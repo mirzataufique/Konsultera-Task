@@ -1,0 +1,17 @@
+<!-- <p>youtube-player works!</p> -->
+<!-- Hiii {{formData | json }} -->
+<div *ngFor="let val of formData" class="container form-control">
+    <!-- {{data  | json}} -->
+    <div>
+        <label>{{val.title}}</label>
+    </div>
+   <!-- URLID= {{getUrlId()}} -->
+    <div>
+        <youtube-player videoId="{{getUrlId()}}" suggestedQuality="highres"></youtube-player>
+    </div>
+    <div style="height: 3rem; width: 100%;">
+        <label>Description: {{val.description}}</label>
+        <label style="margin-left: 5rem;">Status: {{val.status}}</label>
+        <label style="margin-left: 8rem;">Platform: {{val.platform}}</label>
+    </div>
+</div>

@@ -1,0 +1,113 @@
+<!-- <p>dynamic-form works!</p> -->
+<div class="container">
+    <div class="row"  *ngIf="showMsg">
+        <div class="col-xs-12">
+          <p class="alert alert-success">
+              <strong>Success!</strong>
+
+          </p>
+        </div>
+      </div>
+    <h1>Form</h1>
+    <!-- {{registerFormArray.value | json}} -->
+        <form id="form" name="form" [formGroup]="registerFormArray" (ngSubmit)="onSubmit()">
+            <div class="row">
+                <div class="col" *ngFor="let control of dynamicFormData">
+                    <!-- {{control | json}} -->
+                    <div [ngSwitch]="control.type" class="col-md-6">
+                        <div *ngSwitchCase="'text'">
+                            <div class="col-md-3">
+                                <label>{{control.label}}</label>
+                            </div>
+                            <div class="col-md-6">
+                                <input type="control.type" [formControlName]="control.id" class="form-control">
+                                <!-- vaidation -->
+                                <div
+                                    *ngIf="registerFormArray.get(control.id).invalid && registerFormArray.get(control.id).touched">
+                                    <div *ngIf="!registerFormArray.get(control.id).valid">
+                                        <p style="color:red">{{control.label}} is Required</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div *ngSwitchCase="'textarea'">
+                            <div class="col-md-3">
+                                <label>{{control.label}}</label>
+                            </div>
+                            <div class="col-md-6">
+                                <textarea class="form-control" [formControlName]="control.id"></textarea>
+                                <!-- <div
+                                    *ngIf="registerFormArray.get(control.id).dirty || registerFormArray.get(control.id).touched">
+                                    <small *ngIf="!registerFormArray.get(control.id).valid"></small>
+                                    {{control.label}} is Required
+                                </div> -->
+
+                            </div>
+                        </div>
+
+
+                        <div *ngSwitchCase="'dropdown'">
+                            <div class="col-md-3">
+                                <label>{{control.label}}</label>
+                            </div>
+                            <div class="col-md-6">
+                                <select class="form-control" [formControlName]="control.id">
+                                    <option value="'0'">Select..</option>
+                                    <option *ngFor="let subcontrol of dynamicFormData[4].option">
+                                        <div class="col-md-4">
+                                            <label>{{subcontrol.label}}</label>
+                                        </div>
+                                    </option>
+                                    <div class="col-md-6">
+                                        <option *ngFor="let val of dynamicFormData" value="{{val}}">{{val}}
+                                        </option>
+                                        <div
+                                            *ngIf="registerFormArray.get(control.id).invalid && registerFormArray.get(control.id).touched">
+                                            <div *ngIf="!registerFormArray.get(control.id).valid">
+                                                <p style="color:red">{{control.label}} is Required</p>
+                                            </div>
+                                        </div>
+                                        <!-- vaidation -->
+                                        <!-- <div
+                                            *ngIf="registerFormArray.get(control.id).dirty || registerFormArray.get(control.id).touched">
+                                            <small *ngIf="!registerFormArray.get(control.id).valid"></small>
+                                            {{control.label}} is Required.
+                                        </div> -->
+                                    </div>
+                                </select>
+                            </div>
+                        </div>
+
+
+
+                        <div *ngSwitchCase="'radio'">
+                            <div class="col-md-4">
+                                <label>{{control.label}}</label>
+                            </div>
+                            <div class="col-md-4">
+                                <label>
+                                    <input type="radio" [formControlName]="control.id"
+                                        value="{{dynamicFormData[5].option[0].value}}">{{dynamicFormData[5].option[0].label}}
+                                    <input type="radio" [formControlName]="control.id"
+                                        value="{{dynamicFormData[5].option[1].value}}">{{dynamicFormData[5].option[1].label}}
+                                </label>
+                                <!-- vaidation -->
+                                {{registerFormArray.get(control.id).value | json}}
+                                <div *ngIf="registerFormArray.get(control.id).value == null">
+                                    <div *ngIf="!registerFormArray.get(control.id).valid">
+                                        <p style="color:red">{{control.label}} is Required</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="btn-div col-md-12">
+                    <button type="submit" (onClick)="submitData()" [disabled]="btnDisable" class="btn btn-primary">Submit</button>
+                </div>
+            </div>
+
+           
+            
+        </form>
+</div>

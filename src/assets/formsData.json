@@ -1,0 +1,118 @@
+{
+    "fields": [
+        {
+            "label": "Video Title",
+            "type": "text",
+            "id": "video_title",
+            "validationType": "string",
+            "value": "",
+            "Required": true,
+            "validations": [
+                {
+                    "type": "required",
+                    "params": [
+                        "Video title is required"
+                    ]
+                },
+                {
+                    "type": "min",
+                    "params": [
+                        5,
+                        "Video title cannot be less than 5 characters"
+                    ]
+                },
+                {
+                    "type": "max",
+                    "params": [
+                        20,
+                        "Video title cannot be more than 20 characters"
+                    ]
+                }
+            ]
+        },
+        {
+            "label": "Duration",
+            "type": "text",
+            "id": "duration",
+            "validationType": "time",
+            "Required": true,
+            "validations": [
+                {
+                    "type": "required",
+                    "params": [
+                        "Duration is required"
+                    ]
+                }
+            ]
+        },
+        {
+            "label": "Description",
+            "type": "textarea",
+            "id": "description"
+        },
+        {
+            "label": "Link",
+            "type": "text",
+            "id": "link",
+            "validationType": "string",
+            "Required": true,
+            "validations": [
+                {
+                    "type": "required",
+                    "params": [
+                        "Link is required"
+                    ]
+                }
+            ]
+        },
+        {
+            "label": "Platform",
+            "type": "dropdown",
+            "id": "paltform",
+            "option": [
+                {
+                    "label": "Youtube",
+                    "value": "Youtube"
+                },
+                {
+                    "label": "Facebook",
+                    "value": "Facebook"
+                }
+            ],
+            "Required": true,
+            "validations": [
+                {
+                    "type": "required",
+                    "params": [
+                        "Platform is required"
+                    ]
+                }
+            ]
+        },
+        {
+            "label": "status",
+            "type": "radio",
+            "id": "status",
+            "value": 1,
+            "option": [
+                {
+                    "label": "Active",
+                    "value": 1
+                },
+                {
+                    "label": "InActive",
+                    "value": 0
+                }
+            ],
+            "Required": true,
+            "validations": [
+                {
+                    "type": "required",
+                    "params": [
+                        "Status is required"
+                    ]
+                }
+            ]
+        }
+    ]
+}
